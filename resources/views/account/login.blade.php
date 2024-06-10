@@ -35,7 +35,7 @@
                             <div class="row gy-3 overflow-hidden">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="email" value=" {{ old('email') }}" class="form-control @error("email") is-invalid @enderror"  name="email" id="email" placeholder="name@example.com">
+                                        <input type="email"  class="form-control @error("email") is-invalid @enderror"  name="email" id="email" placeholder="name@example.com">
                                         <label for="email" class="form-label">Email</label>
                                         @error("email")
                                         <p class="invalid-feedback"> {{ $message }} </p>
@@ -64,7 +64,7 @@
                             <div class="col-12">
                                 <hr class="mt-5 mb-4 border-secondary-subtle">
                                 <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                    <a href="register.html" class="link-secondary text-decoration-none">Create new account</a>
+                                    <a href="{{route('account.register')}}" class="link-secondary text-decoration-none">Create new account</a>
                                 </div>
                             </div>
                         </div>

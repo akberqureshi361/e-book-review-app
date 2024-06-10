@@ -67,11 +67,19 @@ public function authenticate(Request $request){
         if (Auth::attempt($credetials)) {
             return redirect()->route('account.profile')->with('success', 'Login berhasil');
             }
-            return back()->with('error', 'Email or Password salah');
+            return back()->with('error', 'Either email/password is incorrect');
 }
 
 public function profile(){
-    return view('account.profile');
+    $user = User::find(Auth::user()->id);
+    
+    return view('account.profile',[
+        'user' => $user
+    ]);
+}
+public function logout(){
+    Auth::logout();
+    return redirect()->route('account.login');
 }
 
 
