@@ -72,11 +72,34 @@ public function authenticate(Request $request){
 
 public function profile(){
     $user = User::find(Auth::user()->id);
-    
     return view('account.profile',[
         'user' => $user
     ]);
+    
 }
+//    this method will update user profile 
+ public function updateProfile(Request $request){
+    $validator = Validator::make($request->all(),[
+        'name' => 'required|min:3',
+        'email' => 'required|email|unique:users,email,'.Auth::user()->id.',id',
+
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('account.profile')->withInput()->withErrors($validator);
+    }
+    $user = User::find(Auth::user()->id);
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->save();
+    return redirect()->route('account.profile')->with('success', 'Profile Updated Successfully ');
+    
+
+     
+
+}
+
+//    this method will logout  user profile
+
 public function logout(){
     Auth::logout();
     return redirect()->route('account.login');

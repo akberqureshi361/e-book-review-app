@@ -5,19 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">   
-                @if(Session::has('success'))
-                    <div class=" alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    
-                @endif
-
-                @if(Session::has('error'))
-                <div class=" alert alert-danger">
-                    {{ Session::get('error') }}
-                </div>
-                
-            @endif
+               @include('layout.message');
 
 
 
